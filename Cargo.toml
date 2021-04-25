@@ -5,6 +5,7 @@ authors = ["Daniel McNab <36049421+DJMcNab@users.noreply.github.com>"]
 edition = "2018"
 license = "MIT OR Apache-2.0"
 repository = "https://github.com/DJMcNab/replacinator"
+description = "Replace the internals of a string slice, useful for in-situ parsing"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
