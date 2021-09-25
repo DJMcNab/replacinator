@@ -1,12 +1,16 @@
 [package]
 name = "replacinator"
-version = "0.1.0"
-authors = ["Daniel McNab <36049421+DJMcNab@users.noreply.github.com>"]
+version = "0.2.0-pre1"
 edition = "2018"
 license = "MIT OR Apache-2.0"
 repository = "https://github.com/DJMcNab/replacinator"
 description = "Replace the internals of a string slice, useful for in-situ parsing"
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[features]
+default = []
+# Enable additional sanity checks for the unsafe code, by ensuring that (most) string slices which are distributed are valid
+# If your crate depends on this crate, it is recommended to turn on this feature for your tests
+# This should not be required, but could catch a safety bug in this crate
+disable_safety_checks = []
 
 [dependencies]

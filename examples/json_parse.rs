@@ -15,8 +15,8 @@ fn main() {
         .unwrap();
 
     let json_values = Replacinator::new_in(&mut buf, parse_json_array);
-    dbg!(json_values);
-    println!("Buffer is now: {}", buf);
+    dbg!(&json_values);
+    println!("Buffer is now: {:?}", buf);
 }
 
 fn parse_json_array<'a>(src: &mut Replacinator<'a>) -> JsonArray<'a> {
@@ -26,7 +26,7 @@ fn parse_json_array<'a>(src: &mut Replacinator<'a>) -> JsonArray<'a> {
         match src.skip_char() {
             Some('"') => {
                 // Reset the replacinator to the beginning of this string
-                let _ = src.get_begin();
+                let _ = src.take_start();
                 loop {
                     match src
                         .read_char()
@@ -61,8 +61,7 @@ fn parse_json_array<'a>(src: &mut Replacinator<'a>) -> JsonArray<'a> {
                             other => panic!("Invalid escape {:?}", other),
                         },
                         '"' => {
-                            values.push(src.get_begin());
-                            src.write_char('"');
+                            values.push(src.take_start());
                             break;
                         }
                         other => src.write_char(other),
